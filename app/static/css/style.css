@@ -1,0 +1,54 @@
+.form-control::-webkit-input-placeholder { 
+	color: #7F8177;
+}
+.form-control:-moz-placeholder { 
+	color: #7F8177;
+}
+.form-control::-moz-placeholder { 
+	color: #7F8177; 
+}
+.form-control:-ms-input-placeholder{
+	color: #7F8177;
+}
+
+#interfaces{
+  width:50%
+}
+td{
+  white-space:nowrap;
+}
+table {
+  font-size: 100%;
+  width:30%;
+  margin: 0;
+  border-collapse: collapse;
+  line-height: 1.4em;
+  font-style: normal;
+  font-weight: normal;
+}
+
+path {
+    stroke: #6b9430;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    stroke-width: 1;
+    shape-rendering: auto;
+}
+.area {
+  fill: #93C54B;
+  position: relative;
+  opacity: 0.4;
+  stroke-width: 0;
+}
+.wrapper {
+  max-width: 60rem;
+  width: 100%;
+  margin: 5rem auto;
+  position: relative;
+}

@@ -1,0 +1,6 @@
+migrations/
+.cache/
+__pycache__/
+.vscode/
+.idea/
+.pyc
