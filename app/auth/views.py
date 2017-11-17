@@ -12,10 +12,12 @@ def login():
     """ /login route for user login """
     form = LoginForm()
     if form.validate_on_submit():
+        # check if employee exist
         employee = Employee.query.filter_by(username=form.username.data).first()
-        if employee is not None and employee.verify_password(
-                    form.password.data):
+        if employee is not None and employee.verify_password(form.password.data):
+            # log in employee
             login_user(employee)
+
             if employee.is_admin:
                 return redirect(url_for('home.admin_dashboard'))
             else:

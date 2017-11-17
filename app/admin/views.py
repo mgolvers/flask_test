@@ -8,35 +8,28 @@ from ..models import Department, Employee, Role
 
 
 def check_admin():
-    """
-    Prevent non-admins from accessing the page
-    """
+    """ Prevent non-admins from accessing the page """
     if not current_user.is_admin:
         abort(403)
 
-# Department Views
 
+# Department views
 @admin.route('/departments', methods=['GET', 'POST'])
 @login_required
 def list_departments():
-    """
-    List all departments
-    """
+    """ List all departments """
     check_admin()
-
     departments = Department.query.all()
 
     return render_template('admin/departments/departments.html',
                            departments=departments, title="Departments")
 
+
 @admin.route('/departments/add', methods=['GET', 'POST'])
 @login_required
 def add_department():
-    """
-    Add a department to the database
-    """
+    """ Add a department to the database """
     check_admin()
-
     add_department = True
 
     form = DepartmentForm()
@@ -48,7 +41,7 @@ def add_department():
             db.session.add(department)
             db.session.commit()
             flash('You have successfully added a new department.')
-        except:
+        except Exception as exp:
             # in case department name already exists
             flash('Error: department name already exists.')
 
@@ -60,14 +53,12 @@ def add_department():
                            add_department=add_department, form=form,
                            title="Add Department")
 
+
 @admin.route('/departments/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_department(id):
-    """
-    Edit a department
-    """
+    """ Edit a department"""
     check_admin()
-
     add_department = False
 
     department = Department.query.get_or_404(id)
@@ -87,12 +78,11 @@ def edit_department(id):
                            add_department=add_department, form=form,
                            department=department, title="Edit Department")
 
+
 @admin.route('/departments/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete_department(id):
-    """
-    Delete a department from the database
-    """
+    """ Delete a department from the database"""
     check_admin()
 
     department = Department.query.get_or_404(id)
@@ -105,40 +95,35 @@ def delete_department(id):
 
     return render_template(title="Delete Department")
 
-# Role Viewsau
 
+# Role Views
 @admin.route('/roles')
 @login_required
 def list_roles():
+    """ List all roles """
     check_admin()
-    """
-    List all roles
-    """
     roles = Role.query.all()
     return render_template('admin/roles/roles.html',
                            roles=roles, title='Roles')
 
+
 @admin.route('/roles/add', methods=['GET', 'POST'])
 @login_required
 def add_role():
-    """
-    Add a role to the database
-    """
+    """ Add a role to the database """
     check_admin()
-
     add_role = True
 
     form = RoleForm()
     if form.validate_on_submit():
         role = Role(name=form.name.data,
                     description=form.description.data)
-
         try:
             # add role to the database
             db.session.add(role)
             db.session.commit()
             flash('You have successfully added a new role.')
-        except:
+        except Exception:
             # in case role name already exists
             flash('Error: role name already exists.')
 
@@ -149,14 +134,12 @@ def add_role():
     return render_template('admin/roles/role.html', add_role=add_role,
                            form=form, title='Add Role')
 
+
 @admin.route('/roles/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_role(id):
-    """
-    Edit a role
-    """
+    """ Edit a role """
     check_admin()
-
     add_role = False
 
     role = Role.query.get_or_404(id)
@@ -176,12 +159,11 @@ def edit_role(id):
     return render_template('admin/roles/role.html', add_role=add_role,
                            form=form, title="Edit Role")
 
+
 @admin.route('/roles/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete_role(id):
-    """
-    Delete a role from the database
-    """
+    """ Delete a role from the database """
     check_admin()
 
     role = Role.query.get_or_404(id)
@@ -195,26 +177,23 @@ def delete_role(id):
     return render_template(title="Delete Role")
 
 
+# Employees view
 @admin.route('/employees')
 @login_required
 def list_employees():
-    """
-    List all employees
-    """
+    """ List all employees """
     check_admin()
 
     employees = Employee.query.all()
     return render_template('admin/employees/employees.html',
                            employees=employees, title='Employees')
 
+
 @admin.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
 @login_required
 def assign_employee(id):
-    """
-    Assign a department and a role to an employee
-    """
+    """ Assign a department and a role to an employee """
     check_admin()
-
     employee = Employee.query.get_or_404(id)
 
     # prevent admin from being assigned a department or role

@@ -1,31 +1,27 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField,ValidationError, PasswordField
+from wtforms import StringField, SubmitField, ValidationError, PasswordField
 from wtforms.validators import DataRequired, Email, EqualTo
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
-from ..models import Department, Role
+from ..models import Department, Role, Employee
 
 
 class DepartmentForm(FlaskForm):
-    """ Department form """
+    """ Department add/edit form """
     name = StringField('Name', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 class RoleForm(FlaskForm):
-    """
-    Form for admin to add or edit a role
-    """
+    """ Role add/edit form """
     name = StringField('Name', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 class EmployeeAssignForm(FlaskForm):
-    """
-    Form for admin to assign departments and roles to employees
-    """
+    """ Departments and roles allocation form to employees """
     department = QuerySelectField(query_factory=lambda: Department.query.all(),
                                   get_label="name")
     role = QuerySelectField(query_factory=lambda: Role.query.all(),
@@ -34,15 +30,12 @@ class EmployeeAssignForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    """ Form for users to create new account """
+    """ New account creation form """
     email = StringField('Email', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired()])
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[
-                                        DataRequired(),
-                                        EqualTo('confirm_password')
-                                        ])
+    password = PasswordField('Password', validators=[DataRequired(), EqualTo('confirm_password')])
     confirm_password = PasswordField('Confirm Password')
     submit = SubmitField('Register')
 
@@ -53,5 +46,3 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, field):
         if Employee.query.filter_by(username=field.data).first():
             raise ValidationError('Username is already in use.')
-
- 

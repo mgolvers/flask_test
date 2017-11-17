@@ -25,7 +25,7 @@ class Employee(UserMixin, db.Model):
         raise AttributeError('password is not readable attribute.')
 
     @password.setter
-    def password(self,  password):
+    def password(self, password):
         """ Set password to a hashed password """
         self.password_hash = generate_password_hash(password)
 
