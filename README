@@ -1,0 +1,4 @@
+# Test flask application
+
+- Use **pipenv install** to install dependencies.
+- Use **pipenv lock -r > requirements.txt** to create requirements.txt file for container.

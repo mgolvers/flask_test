@@ -1,26 +1,20 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
-flask-login = "*"
+Flask-Login = "*"
+Flask-Migrate = "*"
+Flask-WTF = "*"
+Flask-Bootstrap = "*"
+gunicorn = "*"
 mysqlclient = "*"
-flask-migrate = "*"
-flask-wtf = "*"
-flask-bootstrap = "*"
-
 
 [dev-packages]
-
-flask-sqlalchemy = "*"
-flask-testing = "*"
+Flask-SQLAlchemy = "*"
+Flask-Testing = "*"
 pytest = "*"
 
-
 [requires]
-
 python_version = "3.6"
