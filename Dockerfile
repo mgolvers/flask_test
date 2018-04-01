@@ -12,7 +12,7 @@ WORKDIR /flask
 COPY requirements.txt ./
 
 # Install mysql-devel
-RUN apk add --update --no-cache mariadb-dev build-base
+RUN apk add --update --no-cache build-base postgresql-dev
 
 # Install python dependencies.
 RUN pip install -r requirements.txt
