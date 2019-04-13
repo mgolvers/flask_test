@@ -11,11 +11,14 @@ Flask-Bootstrap = "*"
 gunicorn = "*"
 "psycopg2" = "*"
 Flask-SQLAlchemy = "*"
+python-dotenv = "*"
+raven = "*"
 
 [dev-packages]
 Flask-SQLAlchemy = "*"
 Flask-Testing = "*"
 pytest = "*"
+"flake8" = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
