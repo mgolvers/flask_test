@@ -9,7 +9,8 @@
 - flask db migrate
 - flask db upgrade
 
-### Environment variables
+## Environment variables
+
 - POSTGRES_PASSWORD=password
 - FLASK_DB=db
 - FLASK_CONFIG=development

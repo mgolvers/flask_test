@@ -1,11 +1,11 @@
-.form-control::-webkit-input-placeholder { 
+.form-control::-webkit-input-placeholder {
 	color: #7F8177;
 }
-.form-control:-moz-placeholder { 
+.form-control:-moz-placeholder {
 	color: #7F8177;
 }
-.form-control::-moz-placeholder { 
-	color: #7F8177; 
+.form-control::-moz-placeholder {
+	color: #7F8177;
 }
 .form-control:-ms-input-placeholder{
 	color: #7F8177;

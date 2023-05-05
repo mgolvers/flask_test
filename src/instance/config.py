@@ -2,6 +2,5 @@
 # instance/config.py
 import os
 
-
-SECRET_KEY = 'p9Bv<3Eid9%$i01'
-SQLALCHEMY_DATABASE_URI = os.getenv('FLASK_DB')
+SECRET_KEY = os.getenv("SECRET_KEY")
+SQLALCHEMY_DATABASE_URI = os.getenv("FLASK_DB")

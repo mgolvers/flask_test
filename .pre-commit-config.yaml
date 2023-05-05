@@ -1,0 +1,60 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: update-requirements-txt
+        name: update-requirements-txt
+        description: "Generate requirements.txt based on poetry.lock"
+        entry: poetry
+        args:
+          [
+            export,
+            --without-hashes,
+            --format,
+            requirements.txt,
+            --output,
+            requirements.txt
+          ]
+        language: system
+        pass_filenames: false
+
+      - id: isort
+        name: isort-formating
+        description: "Sort imports"
+        entry: isort
+        require_serial: true
+        types_or: [ cython, pyi, python ]
+        args: [ "--profile", "black", "--filter-files" ]
+        language: system
+
+      - id: black
+        name: black-check
+        description: "Reformat code with black"
+        entry: black
+        require_serial: true
+        types_or: [ python, pyi ]
+        language: system
+
+      - id: pytest-check
+        name: pytest-check
+        description: "Check code with pytest"
+        entry: pytest
+        args:
+          [
+            "-vv",
+            "-x",
+            "-s",
+            "--cov=.",
+            "--cov-report",
+            "term-missing"
+          ]
+        language: system
+        pass_filenames: false
+
+      - id: bandit-check
+        name: bandit-check
+        description: "Check code with bandit"
+        entry: bandit
+        args: [ "-r", "*" ]
+        language: system
+        pass_filenames: false

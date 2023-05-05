@@ -1,10 +1,10 @@
 ---
-version: '3'
+version: "3"
 services:
     flask:
         build: .
         volumes:
-            - './src:/flask_test'
+            - "./src:/flask_test"
         ports:
             - 8000:8000
         env_file:
@@ -15,23 +15,23 @@ services:
     db:
         image: "postgres"
         volumes:
-            - dbdata:/var/lib/postgresql/data     
+            - dbdata:/var/lib/postgresql/data
         env_file:
             - .env_db
         networks:
             - database_net
     nginx:
         image: "nginx"
-        ports: 
+        ports:
             - "8080:80"
         volumes:
             - ./conf/nginx:/etc/nginx/conf.d/
         networks:
             - web_net
 networks:
-  database_net:
-    driver: bridge
-  web_net:
-    driver: bridge
+    database_net:
+        driver: bridge
+    web_net:
+        driver: bridge
 volumes:
     dbdata:

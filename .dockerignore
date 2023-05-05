@@ -1,4 +1,16 @@
-.git
+.git/
+.pytest_cache/
+__pycache__/
+assets/node_modules/
+public/
+
+.coverage
+.dockerignore
+.env*
+!.env.example
+celerybeat-schedule
+docker-compose.override.yml
+.yarn/
 .env
 __pycache__
 .vscode

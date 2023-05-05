@@ -1,5 +1,5 @@
 # Image
-FROM python:alpine3.6
+FROM python:3.11
 
 # Comments
 LABEL maintainer="Martins Golvers"
@@ -17,7 +17,7 @@ RUN apk add --update --no-cache build-base postgresql-dev
 # Install python dependencies.
 RUN pip install -r requirements.txt
 
-# Copy application to app dir. 
+# Copy application to app dir.
 COPY src /flask
 
 # Expose port.
