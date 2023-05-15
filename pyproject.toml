@@ -62,6 +62,9 @@ max_line_length = 100
 [tool.pylint]
 max-line-length-suggestions = 100
 
+[tool.pylint.code_style]
+max-line-length-suggestions = 100
+
 [tool.flake8]
 max_line_length = 100
 

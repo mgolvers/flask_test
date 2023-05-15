@@ -18,6 +18,8 @@ repos:
         language: system
         pass_filenames: false
 
+  - repo: local
+    hooks:
       - id: isort
         name: isort-formating
         description: "Sort imports"
@@ -27,6 +29,8 @@ repos:
         args: [ "--profile", "black", "--filter-files" ]
         language: system
 
+  - repo: local
+    hooks:
       - id: black
         name: black-check
         description: "Reformat code with black"
@@ -35,6 +39,8 @@ repos:
         types_or: [ python, pyi ]
         language: system
 
+  - repo: local
+    hooks:
       - id: pytest-check
         name: pytest-check
         description: "Check code with pytest"
@@ -51,6 +57,8 @@ repos:
         language: system
         pass_filenames: false
 
+  - repo: local
+    hooks:
       - id: bandit-check
         name: bandit-check
         description: "Check code with bandit"
