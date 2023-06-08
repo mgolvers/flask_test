@@ -62,9 +62,6 @@ max_line_length = 100
 [tool.pylint]
 max-line-length-suggestions = 100
 
-[tool.pylint.code_style]
-max-line-length-suggestions = 100
-
 [tool.flake8]
 max_line_length = 100
 
@@ -72,10 +69,14 @@ max_line_length = 100
 
 [tool.pydocstyle]
 
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
 [tool.pytest.ini_options]
 testpaths = "tests"
 python_files = "test_*.py"
 python_functions = "test_*"
 python_classes = "Test* *Tests"
-addopts = "-vv -x -s --cov=. --cov-report term-missing"
+addopts = "-vv -x -s --cov=app --cov-report term-missing"
 asyncio_mode = "auto"

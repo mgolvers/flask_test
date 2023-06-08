@@ -1,4 +1,5 @@
 ---
+---
 repos:
   - repo: local
     hooks:
@@ -13,56 +14,56 @@ repos:
             --format,
             requirements.txt,
             --output,
-            requirements.txt
+            requirements.txt,
           ]
         language: system
         pass_filenames: false
 
-  - repo: local
-    hooks:
+      - id: ruff
+        name: ruff-check
+        description: "Check Ruff lint"
+        entry: ruff
+        require_serial: true
+        types_or: [cython, pyi, python]
+        language: system
+
+      - id: mypy
+        name: mypy-formating
+        description: "Check mypy lint"
+        entry: mypy
+        require_serial: true
+        types_or: [cython, pyi, python]
+        language: system
+
       - id: isort
         name: isort-formating
         description: "Sort imports"
         entry: isort
         require_serial: true
-        types_or: [ cython, pyi, python ]
-        args: [ "--profile", "black", "--filter-files" ]
+        types_or: [cython, pyi, python]
+        args: ["--profile", "black", "--filter-files"]
         language: system
 
-  - repo: local
-    hooks:
       - id: black
         name: black-check
         description: "Reformat code with black"
         entry: black
         require_serial: true
-        types_or: [ python, pyi ]
+        types_or: [python, pyi]
         language: system
 
-  - repo: local
-    hooks:
       - id: pytest-check
         name: pytest-check
         description: "Check code with pytest"
         entry: pytest
-        args:
-          [
-            "-vv",
-            "-x",
-            "-s",
-            "--cov=.",
-            "--cov-report",
-            "term-missing"
-          ]
+        args: ["-vv", "-x", "-s", "--cov=.", "--cov-report", "term-missing"]
         language: system
         pass_filenames: false
 
-  - repo: local
-    hooks:
       - id: bandit-check
         name: bandit-check
         description: "Check code with bandit"
         entry: bandit
-        args: [ "-r", "*" ]
+        args: ["-r", "*"]
         language: system
         pass_filenames: false
