@@ -6,31 +6,34 @@ authors = ["Martins Golvers <martins.golvers@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Flask-Login = "^0.6.2"
-Flask-Migrate = "^4.0.4"
-Flask-WTF = "^1.1.1"
+Flask-Login = "^0.6.3"
+Flask-Migrate = "^4.0.7"
+Flask-WTF = "^1.2.1"
 Flask-Bootstrap = "^3.3.7.1"
-gunicorn = "^20.1.0"
-psycopg2 = "^2.9.6"
-Flask-SQLAlchemy = "^3.0.3"
-python-dotenv = "^1.0.0"
-flask = "^2.3.2"
-wtforms = "^3.0.1"
-wtforms-sqlalchemy = "^0.3"
-email-validator = "^2.0.0.post2"
+gunicorn = "^21.2.0"
+psycopg2 = "^2.9.9"
+Flask-SQLAlchemy = "^3.1.1"
+python-dotenv = "^1.0.1"
+flask = "^3.0.3"
+wtforms = "^3.1.2"
+wtforms-sqlalchemy = "^0.4.1"
+email-validator = "^2.1.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest-sugar = "^0.9.7"
+pytest-sugar = "^1.0.0"
 pytest-clarity = "^1.0.1"
-pytest-icdiff = "^0.6"
-pytest = "^7.3.1"
-pylint = "^2.17.3"
-pytest-cov = "^4.0.0"
-bandit = "^1.7.5"
+pytest-icdiff = "^0.9"
+pytest = "^8.1.1"
+pylint = "^3.1.0"
+pytest-cov = "^5.0.0"
+bandit = "^1.7.8"
 flask-testing = "^0.8.1"
-flake8 = "^6.0.0"
-isort = "^5.12.0"
-black = "^23.3.0"
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+black = "^24.4.0"
+types-flask-migrate = "^4.0.0.20240311"
+ruff = "^0.3.7"
+mypy = "^1.9.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -43,6 +46,7 @@ exclude = '''
     \.git
   | \.mypy_cache
   | \.pytest_cache
+  | \.ruff_cache
   | \.tox
   | \.venv
   | __pycache__
@@ -60,7 +64,7 @@ force_single_line = true
 max_line_length = 100
 
 [tool.pylint]
-max-line-length-suggestions = 100
+max-line-length = 100
 
 [tool.flake8]
 max_line_length = 100
@@ -72,6 +76,10 @@ max_line_length = 100
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+ignore-init-module-imports = true
+
+[tool.mypy]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = "tests"

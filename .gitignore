@@ -149,3 +149,4 @@ junk/
 *.secret.yaml
 .yarn/
 .env_db
+.ruff_cache
