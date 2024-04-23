@@ -6,15 +6,7 @@ repos:
         name: update-requirements-txt
         description: "Generate requirements.txt based on poetry.lock"
         entry: poetry
-        args:
-          [
-            export,
-            --without-hashes,
-            --format,
-            requirements.txt,
-            --output,
-            requirements.txt
-          ]
+        args: [export, --format, requirements.txt, --output, requirements.txt]
         language: system
         pass_filenames: false
 
@@ -23,7 +15,7 @@ repos:
         description: "Check Ruff lint"
         entry: ruff
         require_serial: true
-        types_or: [ cython, pyi, python ]
+        types_or: [cython, pyi, python]
         language: system
 
       - id: mypy
@@ -31,7 +23,7 @@ repos:
         description: "Check mypy lint"
         entry: mypy
         require_serial: true
-        types_or: [ cython, pyi, python ]
+        types_or: [cython, pyi, python]
         language: system
 
       - id: isort
@@ -39,8 +31,8 @@ repos:
         description: "Sort imports"
         entry: isort
         require_serial: true
-        types_or: [ cython, pyi, python ]
-        args: [ "--profile", "black", "--filter-files" ]
+        types_or: [cython, pyi, python]
+        args: ["--profile", "black", "--filter-files"]
         language: system
 
       - id: black
@@ -48,22 +40,14 @@ repos:
         description: "Reformat code with black"
         entry: black
         require_serial: true
-        types_or: [ python, pyi ]
+        types_or: [python, pyi]
         language: system
 
       - id: pytest-check
         name: pytest-check
         description: "Check code with pytest"
         entry: pytest
-        args:
-          [
-            "-vv",
-            "-x",
-            "-s",
-            "--cov=.",
-            "--cov-report",
-            "term-missing"
-          ]
+        args: ["-vv", "-x", "-s", "--cov=.", "--cov-report", "term-missing"]
         language: system
         pass_filenames: false
 
@@ -71,7 +55,15 @@ repos:
         name: bandit-check
         description: "Check code with bandit"
         entry: bandit
-        args: [ "-r", "*" ]
+        args: ["-r", "*"]
+        language: system
+        pass_filenames: false
+
+      - id: pip-audit
+        name: pip-audit
+        description: Checks you files for CVEs.
+        entry: pip-audit
+        args: ["-r", "requirements.txt"]
         language: system
         pass_filenames: false
 
@@ -79,7 +71,7 @@ repos:
         name: gitlint
         description: Checks your git commit messages for style.
         language: python
-        additional_dependencies: [ "./gitlint-core[trusted-deps]" ]
+        additional_dependencies: ["./gitlint-core[trusted-deps]"]
         entry: gitlint
-        args: [ --staged, --msg-filename ]
-        stages: [ commit-msg ]
+        args: [--staged, --msg-filename]
+        stages: [commit-msg]
