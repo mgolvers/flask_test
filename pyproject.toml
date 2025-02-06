@@ -3,7 +3,7 @@ name = "flask-test"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = ["Martins Golvers <martins.golvers@gmail.com>"]
+authors = [{ name = "Martins Golvers", email = "martins.golvers@gmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
     "email-validator>=2.2.0",
