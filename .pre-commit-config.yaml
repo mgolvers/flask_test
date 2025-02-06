@@ -2,13 +2,49 @@
 repos:
   - repo: local
     hooks:
-      - id: update-requirements-txt
-        name: update-requirements-txt
-        description: "Generate requirements.txt based on poetry.lock"
-        entry: poetry
-        args: [export, --format, requirements.txt, --output, requirements.txt]
-        language: system
+      - id: pip-compile
+        name: pip-compile
+        description: "Automatically run 'uv pip compile' on your requirements"
+        entry: uv pip compile
+        language: python
+        files: ^requirements\.(in|txt)$
+        args: []
         pass_filenames: false
+        additional_dependencies: []
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: uv-lock
+        name: uv-lock
+        description: "Automatically run 'uv lock' on your project dependencies"
+        entry: uv lock
+        language: python
+        files: ^(uv\.lock|pyproject\.toml|uv\.toml)$
+        args: []
+        pass_filenames: false
+        additional_dependencies: []
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: uv-export
+        name: uv-export
+        description: "Automatically run 'uv export' on your project dependencies"
+        entry: uv export
+        language: python
+        files: ^uv\.lock$
+        args: ["--frozen", "--output-file=requirements.txt"]
+        pass_filenames: false
+        additional_dependencies: []
+        minimum_pre_commit_version: "2.9.2"
+
+      - id: uv-sync
+        name: uv-sync
+        description: "Automatically run 'uv sync' on your repository after a checkout, pull or rebase"
+        entry: uv sync
+        args: ["--locked"]
+        language: python
+        always_run: true
+        pass_filenames: false
+        stages: [post-checkout, post-merge, post-rewrite]
+        minimum_pre_commit_version: "2.9.2"
 
       - id: ruff
         name: ruff-check
