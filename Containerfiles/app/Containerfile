@@ -1,9 +1,9 @@
 # Image
-FROM python:3.11
+FROM python:3.13
 
 # Comments
 LABEL maintainer="Martins Golvers"
-LABEL version="1.0"
+LABEL version="1.0.0"
 
 # Create application directory.
 WORKDIR /flask
